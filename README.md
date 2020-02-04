@@ -5,4 +5,4 @@
 * [Blog](blog)
 
 ## License
-©2020 Euler Project [粤ICP备15054669号](http://www.miitbeian.gov.cn)
+©2020 Euler Project [粤ICP备15054669号](http://www.beian.miit.gov.cn)
