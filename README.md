@@ -3,4 +3,6 @@
 * [Blog](blog)
 
 ## License
-©2020 Euler Project [粤ICP备15054669号](http://www.beian.miit.gov.cn)
+The Euler Project is released under version 2.0 of the [Apache License][].
+
+[Apache License]: http://www.apache.org/licenses/LICENSE-2.0
