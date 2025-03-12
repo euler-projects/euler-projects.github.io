@@ -1,6 +1,10 @@
 version: '3'
 services:
   nginx:
+    restart: always
+    depends_on:
+     - jenkins
+     - nexus
     image: registry-vpc.cn-shenzhen.aliyuncs.com/euler-mirrors/nginx:1.27.3
     ports:
       - 80:80
@@ -15,15 +19,15 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt:ro
       - /opt/github:/web:ro
 
-#  jenkins:
-#    image: jenkins/jenkins:lts
-#    volumes:
-#      - /usr/lib64/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7
-#      - /var/run/docker.sock:/var/run/docker.sock
-#      - /usr/bin/docker:/usr/bin/docker
-#      - /data/docker/volumes/ci/jenkins/home:/var/jenkins_home:rw
-#    extra_hosts:
-#      - "repo.eulerproject.io:nexus"
+  jenkins:
+   image: registry-vpc.cn-shenzhen.aliyuncs.com/euler-mirrors/jenkins:2.492.2
+   volumes:
+     #- /usr/lib64/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7
+     #- /var/run/docker.sock:/var/run/docker.sock
+     #- /usr/bin/docker:/usr/bin/docker
+     - /data/docker/volumes/ci/jenkins/jenkins_home:/var/jenkins_home:rw
+   extra_hosts:
+     - "repo.eulerproject.io:nexus"
 
   nexus:
     image: registry-vpc.cn-shenzhen.aliyuncs.com/euler-mirrors/nexus3:3.37.3
