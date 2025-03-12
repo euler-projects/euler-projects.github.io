@@ -23,14 +23,14 @@ services:
         ipv4_address: 192.168.0.254
 
   jenkins:
-   image: registry-vpc.cn-shenzhen.aliyuncs.com/euler-mirrors/jenkins:2.492.2
-   volumes:
-     #- /usr/lib64/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7
-     #- /var/run/docker.sock:/var/run/docker.sock
-     #- /usr/bin/docker:/usr/bin/docker
-     - /data/docker/volumes/ci/jenkins/jenkins_home:/var/jenkins_home:rw
-   extra_hosts:
-     - "repo.eulerproject.io:192.168.0.254"
+    image: registry-vpc.cn-shenzhen.aliyuncs.com/euler-mirrors/jenkins:2.492.2
+    volumes:
+      #- /usr/lib64/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7
+      #- /var/run/docker.sock:/var/run/docker.sock
+      #- /usr/bin/docker:/usr/bin/docker
+      - /data/docker/volumes/ci/jenkins/jenkins_home:/var/jenkins_home:rw
+    extra_hosts:
+      - "repo.eulerproject.io:192.168.0.254"
 
   nexus:
     image: registry-vpc.cn-shenzhen.aliyuncs.com/euler-mirrors/nexus3:3.37.3
