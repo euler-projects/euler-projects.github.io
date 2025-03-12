@@ -37,9 +37,9 @@ services:
     volumes:
       - /data/docker/volumes/ci/nexus/data:/nexus-data
 
-  networks:
-    euler:
-      ipam:
-        config:
-          - subnet: 192.168.0.0/24
+networks:
+  euler:
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
 
