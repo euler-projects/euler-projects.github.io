@@ -26,8 +26,8 @@ services:
      #- /var/run/docker.sock:/var/run/docker.sock
      #- /usr/bin/docker:/usr/bin/docker
      - /data/docker/volumes/ci/jenkins/jenkins_home:/var/jenkins_home:rw
-   extra_hosts:
-     - "repo.eulerproject.io:nexus"
+  #  extra_hosts:
+  #    - "repo.eulerproject.io:nexus"
 
   nexus:
     image: registry-vpc.cn-shenzhen.aliyuncs.com/euler-mirrors/nexus3:3.37.3
