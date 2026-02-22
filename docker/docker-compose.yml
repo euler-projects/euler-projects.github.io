@@ -20,7 +20,7 @@ services:
       - /opt/github:/web:ro
 
   jenkins:
-    image: registry-vpc.cn-shenzhen.aliyuncs.com/euler-mirrors/jenkins:2.492.2
+    image: registry-vpc.cn-shenzhen.aliyuncs.com/euler-mirrors/jenkins:2.541.2
     volumes:
       #- /usr/lib64/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7
       - /var/run/docker.sock:/var/run/docker.sock
