@@ -9,3 +9,29 @@ services:
       - ./volumes/nginx/conf/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./volumes/nginx/logs:/var/log/nginx:rw
       - /opt/nginx/tls:/etc/nginx/tls:ro
+
+  redis:
+    restart: always
+    image: redis:8.4.0
+    volumes:
+      - /data/docker/volumes/eulerproject.org/redis/data:/data
+    command: redis-server --appendonly yes
+
+  app-uc:
+    restart: always
+    image: eulerproject/user-center:1.0.0
+    volumes:
+      - /data/docker/volumes/eulerproject.org/app-uc/config:/app/config
+      - /data/docker/volumes/eulerproject.org/app-uc/runtime:/var/lib/user-center
+      - /data/docker/volumes/eulerproject.org/app-uc/log:/var/log/user-center
+      - /data/docker/volumes/eulerproject.org/app-uc/dump:/var/dump/user-center
+    environment:
+      - JAVA_OPTS=
+        -server
+        -Xms256m
+        -Xmx256m
+        -Dfile.encoding=UTF-8
+        -Dsun.jnu.encoding=UTF-8
+        -XX:+HeapDumpBeforeFullGC
+        -XX:HeapDumpPath=/var/dump/user-center
+        -Dspring.profiles.active=container
