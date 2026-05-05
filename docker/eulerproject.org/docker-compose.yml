@@ -21,7 +21,8 @@ services:
     restart: always
     image: eulerproject/user-center:1.0.0
     volumes:
-      - /data/docker/volumes/eulerproject.org/app-uc/config:/app/config
+      - ./volumes/app-uc/config:/app/config:ro
+      - /data/docker/volumes/eulerproject.org/app-uc/.env:/app/.env:ro
       - /data/docker/volumes/eulerproject.org/app-uc/runtime:/var/lib/user-center
       - /data/docker/volumes/eulerproject.org/app-uc/log:/var/log/user-center
       - /data/docker/volumes/eulerproject.org/app-uc/dump:/var/dump/user-center
