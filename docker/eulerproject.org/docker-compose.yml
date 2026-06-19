@@ -1,7 +1,7 @@
 services:
   nginx:
     restart: always
-    image: nginx:1.29.4
+    image: nginx:1.31.1
     ports:
       - 443:443
     volumes:
