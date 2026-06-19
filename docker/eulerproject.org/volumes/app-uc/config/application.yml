@@ -8,7 +8,7 @@ euler:
         primary-alg: AES-256-GCM
         keys:
           dev:
-            kid: xyxc-00
+            kid: euler-00
             alg: AES-256-GCM
             primary: true
             key-file: '/app/jpa/encryption.key'
@@ -22,8 +22,8 @@ euler:
         redis-key-prefix: 'xyxc:oauth2:auth'
         jwk:
           keys:
-            xyxc-00:
-              kid: 'xyxc-00'
+            euler-00:
+              kid: 'euler-00'
               alg: RS256
               use: sig
               status: ACTIVE
