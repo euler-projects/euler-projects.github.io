@@ -2,7 +2,30 @@ euler:
   application:
     runtime-path: /var/lib/${spring.application.name}
     temp-path: /var/tmp/${spring.application.name}
+  data:
+    jpa:
+      encryption:
+        primary-alg: AES-256-GCM
+        keys:
+          dev:
+            kid: xyxc-00
+            alg: AES-256-GCM
+            primary: true
+            key-file: '/app/jpa/encryption.key'
   security:
     app-attest:
       enabled: true
       development-environment: true
+    oauth2:
+      authorizationserver:
+        authorization-store-type: redis
+        redis-key-prefix: 'xyxc:oauth2:auth'
+        jwk:
+          keys:
+            xyxc-00:
+              kid: 'xyxc-00'
+              alg: RS256
+              use: sig
+              status: ACTIVE
+              iat: '2026-01-01T00:00:00Z'
+              key-file: 'file:///app/oauth2/jwk.pem'
