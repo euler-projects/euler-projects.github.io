@@ -18,8 +18,6 @@ euler:
       development-environment: true
     oauth2:
       authorizationserver:
-        authorization-store-type: redis
-        redis-key-prefix: 'xyxc:oauth2:auth'
         jwk:
           keys:
             euler-00:
