@@ -26,8 +26,8 @@ services:
       - /data/docker/volumes/eulerproject.org/app-uc/runtime:/var/lib/user-center
       - /data/docker/volumes/eulerproject.org/app-uc/log:/var/log/user-center
       - /data/docker/volumes/eulerproject.org/app-uc/dump:/var/dump/user-center
-      - /opt/secret/eulerproject.org/jpa/encryption.key:/app/jpa/encryption.key:ro
-      - /opt/secret/eulerproject.org/oauth2/jwk.pem:/app/oauth2/jwk.pem:ro
+      - /opt/secret/auth.eulerproject.org/jpa/encryption.key:/app/jpa/encryption.key:ro
+      - /opt/secret/auth.eulerproject.org/oauth2/jwk.pem:/app/oauth2/jwk.pem:ro
     environment:
       - JAVA_OPTS=
         -server
