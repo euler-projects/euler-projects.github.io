@@ -1,3 +1,17 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_OAUTH2_CLIENT_ID}
+            client-secret: ${GOOGLE_OAUTH2_CLIENT_SECRET}
+            client-name: Google
+            scope:
+              - openid
+              - profile
+              - email
+
 euler:
   application:
     runtime-path: /var/lib/${spring.application.name}
@@ -13,6 +27,16 @@ euler:
             primary: true
             key-file: '/app/jpa/encryption.key'
   security:
+    web:
+      login-methods:
+        google:
+          type: oauth2
+          properties:
+            identity-type: google
+            oauth-client-registration-id: google
+            auto-create-user: true
+            default-authorities:
+              - user
     app-attest:
       enabled: true
       development-environment: true
