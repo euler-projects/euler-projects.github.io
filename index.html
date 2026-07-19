@@ -75,13 +75,46 @@
         @media screen and (max-width: 767px) {
         }
 
-        .brand-incons {
-            height: 30px;
-            width:120px;
-            background-image:url(brand.png);
-            background-repeat:no-repeat;
-            background-size:contain;
-            display:inline-block;
+        .navbar-brand svg {
+            height: 24px;
+            width: 24px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /*
+         * Brand text sits to the right of the 24×24 mark. `line-height: 24px`
+         * matches the icon's height so `vertical-align: middle` centers the
+         * baseline exactly, and `margin-left: 8px` gives the icon a
+         * comfortable air gap without looking detached (Material Design's
+         * standard icon–label gutter). Font weight is bumped to 500 for the
+         * mild emphasis a wordmark warrants next to a bold brand glyph.
+         */
+        .navbar-brand span {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 8px;
+            line-height: 24px;
+            font-weight: 500;
+        }
+
+        /*
+         * Idle state uses a softly dimmed white (75% alpha) so the brand
+         * mark reads as “present but not shouting” against the black navbar,
+         * echoing the muted feel of Bootstrap 5's `navbar-dark` links. Hover
+         * / focus escalate to solid white to give the affordance a clear
+         * highlight response. `currentColor` on the inline SVG makes the
+         * glyph track this same colour so the wordmark and mark stay in
+         * lock-step across states.
+         */
+        .navbar-inverse .navbar-brand {
+            color: rgba(255, 255, 255, 0.75);
+            transition: color 0.15s ease-in-out;
+        }
+
+        .navbar-inverse .navbar-brand:hover,
+        .navbar-inverse .navbar-brand:focus {
+            color: #fff;
         }
     </style>
 </head>
@@ -96,7 +129,15 @@
                 <span class="icon-bar"></span>
             </button>
             <a id="brand" class="navbar-brand" href="/">
-                <span class="brand-incons"></span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" aria-label="Euler Project">
+                    <!-- Thick outer arc: from 0° (on crossbar) CCW 330° → gap at Q4 -->
+                    <path d="M 28 15 A 13 13 0 1 0 26.26 21.5" fill="none" stroke="currentColor" stroke-width="3.75"/>
+                    <!-- Thin diameter chord: 30°(Q1) → 210°(Q3), forms π semi-circle with upper arc -->
+                    <path d="M 26.26 8.5 L 3.74 21.5" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <!-- Q1 filled sector: 30°, symmetric to Q4 gap -->
+                    <path d="M 15 15 L 28 15 A 13 13 0 0 0 26.26 8.5 Z" fill="currentColor"/>
+                </svg>
+                <span>Euler Projects</span>
             </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
