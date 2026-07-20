@@ -108,7 +108,7 @@
          * lock-step across states.
          */
         .navbar-inverse .navbar-brand {
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(255, 255, 255, 0.85);
             transition: color 0.15s ease-in-out;
         }
 
@@ -129,13 +129,16 @@
                 <span class="icon-bar"></span>
             </button>
             <a id="brand" class="navbar-brand" href="/">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" aria-label="Euler Project">
-                    <!-- Thick outer arc: from 0° (on crossbar) CCW 330° → gap at Q4 -->
-                    <path d="M 28 15 A 13 13 0 1 0 26.26 21.5" fill="none" stroke="currentColor" stroke-width="3.75"/>
-                    <!-- Thin diameter chord: 30°(Q1) → 210°(Q3), forms π semi-circle with upper arc -->
-                    <path d="M 26.26 8.5 L 3.74 21.5" fill="none" stroke="currentColor" stroke-width="2"/>
-                    <!-- Q1 filled sector: 30°, symmetric to Q4 gap -->
-                    <path d="M 15 15 L 28 15 A 13 13 0 0 0 26.26 8.5 Z" fill="currentColor"/>
+                <!--
+                  Brand glyph lives in brand.svg as <symbol id="euler-brand">.
+                  Referencing it via <use href="…#euler-brand"/> keeps CSS
+                  `currentColor` threading through the shadow tree, so the
+                  navbar-brand link colour (and its hover/focus escalation)
+                  still tint the disc. Do NOT switch to <img src="brand.svg">:
+                  that sandboxes the SVG and the currentColor binding breaks.
+                -->
+                <svg viewBox="0 0 24 24" aria-label="Euler Project">
+                    <use href="brand.svg#euler-brand"/>
                 </svg>
                 <span>Euler Projects</span>
             </a>

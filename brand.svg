@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Euler Project brand mark.
+
+  A filled disc (r=12 in a 24×24 viewBox) with a logarithmic-spiral
+  snail shell punched out. Four arcs of radii 8φ → 8 → 5 → 3, each
+  shrinking by exactly 1/φ per turn — a discrete sampling of the
+  log-spiral r = a·e^(θ/2π), a nod to Euler's namesake constant.
+
+  Segments 1–3 are complete half-circles; segment 0 is the outward
+  extension whose r = 8φ ≈ 12.94 circle overshoots the disc and is
+  truncated at the circle-circle intersection (11.91, 24). The
+  stroke's round line-cap is naturally clipped by the mask so the
+  tail dissolves into the disc rim.
+
+  Structure: the drawable content lives inside <symbol id="euler-brand">
+  so consumers can pull it in via <use href="brand.svg#euler-brand"/>
+  from another SVG on the same origin, and `currentColor` will thread
+  through the <use> shadow tree to inherit the host's CSS `color`.
+  The outermost <use> in this file exists purely so that opening
+  brand.svg directly (in a browser or as an <img>) still renders the
+  glyph; embed consumers should reference the symbol by id instead.
+
+  The mask's black/white values are luminance-mask semantics ("erase"
+  / "keep") and must stay literal, they never render to screen.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <symbol id="euler-brand" viewBox="0 0 24 24" role="img" aria-labelledby="euler-brand-title">
+        <title id="euler-brand-title">Euler Project</title>
+        <mask id="euler-brand-mask">
+            <circle cx="12" cy="12" r="12" fill="white"/>
+            <path d="M 11.91 24 A 12.94 12.94 0 0 0 20 12 A 8 8 0 1 0 4 12 A 5 5 0 1 0 14 12 A 3 3 0 1 0 8 12"
+                  fill="none" stroke="black" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+        </mask>
+        <circle cx="12" cy="12" r="12" fill="currentColor" mask="url(#euler-brand-mask)"/>
+    </symbol>
+    <use href="#euler-brand"/>
+</svg>
