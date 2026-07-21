@@ -129,16 +129,52 @@
                 <span class="icon-bar"></span>
             </button>
             <a id="brand" class="navbar-brand" href="/">
-                <!--
-                  Brand glyph lives in brand.svg as <symbol id="euler-brand">.
-                  Referencing it via <use href="…#euler-brand"/> keeps CSS
-                  `currentColor` threading through the shadow tree, so the
-                  navbar-brand link colour (and its hover/focus escalation)
-                  still tint the disc. Do NOT switch to <img src="brand.svg">:
-                  that sandboxes the SVG and the currentColor binding breaks.
-                -->
-                <svg viewBox="0 0 24 24" aria-label="Euler Project">
-                    <use href="brand.svg#euler-brand"/>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-label="Euler Project">
+                    <!--
+                      Filled disc (r=12, edge-to-edge in a 24×24 viewBox)
+                      with a logarithmic-spiral snail shell punched out.
+                      Disc uses `fill="currentColor"` so it inherits the
+                      navbar-brand link colour and its hover/focus
+                      escalation.
+
+                      Spiral: four arcs of radii 8φ → 8 → 5 → 3, each
+                      shrinking by exactly 1/φ per turn — a discrete
+                      sampling of r = a·e^(θ/2π), Euler's namesake growth
+                      law. Segments 1–3 are complete half-circles;
+                      segment 0 is the outward extension whose r=8φ
+                      (≈12.94) circle intersects the disc at x = 20 − 5φ
+                      ≈ 11.91, y ≈ 24. The mask stroke does NOT start at
+                      that crossing though — it starts 12° farther along
+                      the same segment-0 circle, at (9.30, 24.75), which
+                      sits outside both the disc and the viewBox. That
+                      way the stroke's `round` line-cap and its curved
+                      lead-in are entirely off-canvas, and where the
+                      stroke first enters the disc it does so as an
+                      unadorned middle section. The resulting cut-edge
+                      along the disc rim is exactly an arc of the outer
+                      circle (r=12), so the spiral's tail meets the disc
+                      boundary cleanly — no half-moon lump from a stray
+                      line-cap. Threading (9.30,24.75) → (11.91,24) [as
+                      it crosses into the disc] → (20,12) → (4,12) →
+                      (14,12) → (8,12); the spiral stops at r=3 so the
+                      core stays airy. All joints are tangent-continuous
+                      (every arc centre sits on the y=12 line), so the
+                      mark reads as one smooth curve.
+
+                      The `<mask>` uses SVG's "white keeps, black erases"
+                      luminance-mask semantics — those two colours are
+                      mask values, not display colours, so they must
+                      stay literal.
+                    -->
+                    <defs>
+                        <mask id="brand-mask">
+                            <circle cx="12" cy="12" r="12" fill="white"/>
+                            <path d="M 9.3 24.75 A 12.94 12.94 0 0 0 20 12 A 8 8 0 1 0 4 12 A 5 5 0 1 0 14 12 A 3 3 0 1 0 8 12"
+                                  fill="none" stroke="black" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </mask>
+                    </defs>
+                    <circle cx="12" cy="12" r="12" fill="currentColor" mask="url(#brand-mask)"/>
                 </svg>
                 <span>Euler Projects</span>
             </a>
