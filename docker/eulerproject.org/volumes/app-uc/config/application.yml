@@ -31,12 +31,9 @@ euler:
       login-methods:
         google:
           type: oauth2
+          identity-type: google
           properties:
-            identity-type: google
             oauth-client-registration-id: google
-            auto-create-user: true
-            default-authorities:
-              - user
     app-attest:
       enabled: true
       development-environment: true
