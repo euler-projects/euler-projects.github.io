@@ -27,16 +27,19 @@ euler:
             primary: true
             key-file: '/app/jpa/encryption.key'
   security:
-    web:
-      login-methods:
-        google:
-          type: oauth2
-          identity-type: google
-          properties:
-            oauth-client-registration-id: google
-    app-attest:
-      enabled: true
-      development-environment: true
+    login-method:
+      password:
+        method-type: password
+      google:
+        method-type: oauth2
+        identity-type: google
+    authentication:
+      app-attest:
+        enabled: true
+        development-environment: true
+      otp:
+        enabled: true
+        storage: redis
     oauth2:
       authorizationserver:
         jwk:
