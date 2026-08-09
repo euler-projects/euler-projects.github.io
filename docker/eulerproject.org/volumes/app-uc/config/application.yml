@@ -29,10 +29,10 @@ euler:
   security:
     login-method:
       password:
-        method-type: password
-      google:
-        method-type: oauth2
-        identity-type: google
+        password: {}
+      oauth2:
+        google:
+          identity-type: google
     authentication:
       app-attest:
         enabled: true
